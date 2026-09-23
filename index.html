@@ -476,11 +476,20 @@
 
             /* Espacio extra sobre la altura del navbar para que nada quede tapado */
             padding-top:
-                calc(var(--nav-height) + 40px);
+                calc(var(--nav-height) + 60px);
+
+            padding-bottom: 60px;
 
             display: flex;
 
-            align-items: center;
+            /*
+             * flex-start en vez de center: si el contenido (video +
+             * título + texto) es más alto que el viewport, con
+             * "center" se desborda por arriba tapándose con el
+             * navbar. Con flex-start arranca siempre debajo del
+             * padding-top y nunca queda oculto.
+             */
+            align-items: flex-start;
 
             overflow: hidden;
 
@@ -1542,63 +1551,65 @@
             }
 
 
+            /*
+             * Navbar mobile simplificada: sin menú hamburguesa ni
+             * dropdown (que se rompía). Los 3 links quedan siempre
+             * visibles, en fila, chicos, dentro de la misma barra.
+             */
+
             .navbar {
 
                 height:
                     var(--nav-height);
 
                 padding:
-                    0 20px;
+                    0 16px;
+
+            }
+
+
+            .nav-logo {
+
+                font-size: 12px;
+
+                letter-spacing: 0;
+
+            }
+
+
+            .menu-button {
+
+                display: none;
 
             }
 
 
             .nav-links {
 
-                position: fixed;
+                position: static;
 
-                top:
-                    var(--nav-height);
-
-                left: 0;
-
-                width: 100%;
+                width: auto;
 
                 display: flex;
 
-                flex-direction: column;
+                flex-direction: row;
 
-                gap: 0;
+                gap: 10px;
 
-                background:
-                    rgba(2,0,1,.97);
+                background: transparent;
 
-                border-bottom:
-                    1px solid
-                    var(--pink);
+                border-bottom: none;
 
-                transform:
-                    translateY(-120%);
+                transform: none;
 
-                transition:
-                    transform .4s ease;
-
-            }
-
-
-            .nav-links.active {
-
-                transform:
-                    translateY(0);
+                transition: none;
 
             }
 
 
             .nav-links li {
 
-                border-bottom:
-                    1px solid
-                    rgba(255,255,255,.1);
+                border-bottom: none;
 
             }
 
@@ -1607,16 +1618,13 @@
 
                 display: block;
 
-                padding: 22px;
+                padding: 6px 0;
 
-                font-size: 10px;
+                font-size: 7px;
 
-            }
+                letter-spacing: .8px;
 
-
-            .menu-button {
-
-                display: block;
+                white-space: nowrap;
 
             }
 
@@ -1772,10 +1780,12 @@
 
                 font-size:
                     clamp(
-                        40px,
-                        15vw,
-                        90px
+                        30px,
+                        11vw,
+                        52px
                     );
+
+                letter-spacing: -1px;
 
             }
 
